@@ -10,6 +10,16 @@ require(dirname(__FILE__) . "/../lib/beanstalkapi.class.php");
 class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 {
 	/**
+	 * Generic function to check return type from all API calls - can be used as a wrapper
+	 */
+	protected function doReturnTypeCheck($apiResult)
+	{
+		$this->assertEquals('SimpleXMLElement', get_class($apiResult))
+		
+		return $apiResult;
+	}
+	
+	/**
 	 * @expectedException InvalidArgumentException
 	 */
 	public function testInstantiationException()
@@ -17,6 +27,9 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 		new BeanstalkAPI();
 	}
 	
+	/**
+	 * Should correctly instantiate Beanstalk connection - used in subsequent API calls
+	 */
 	public function testInstantiation()
 	{
 		$Beanstalk = new BeanstalkAPI('account', 'user', 'pass');
@@ -37,7 +50,9 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	 */
 	public function testFindAllRepositories(BeanstalkAPI $Beanstalk)
 	{
-		$Beanstalk->find_all_repositories();
+		$repos = $Beanstalk->find_all_repositories();
+		
+		$this->doReturnTypeCheck($repos);
 	}
 	
 	/**
