@@ -14,7 +14,7 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	 */
 	protected function doReturnTypeCheck($apiResult)
 	{
-		$this->assertEquals('SimpleXMLElement', get_class($apiResult))
+		$this->assertEquals('SimpleXMLElement', get_class($apiResult));
 		
 		return $apiResult;
 	}
