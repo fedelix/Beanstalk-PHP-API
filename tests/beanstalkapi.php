@@ -59,8 +59,23 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	 * @depends testInstantiation
 	 * @expectedException InvalidArgumentException
 	 */
-	public function testFindRepositoryException(BeanstalkAPI $Beanstalk)
+	public function testFindSingleRepositoryException(BeanstalkAPI $Beanstalk)
 	{
 		$Beanstalk->find_single_repository(null);
+	}
+	
+	public function findSingleRepositoryProvider()
+	{
+		// Need to access BeanstalkAPI object
+		// Call find_all_repositories() and return single repo
+	}
+	
+	/**
+	 * @dataProvider findSingleRepositoryProvider
+	 * @depends testInstantiation
+	 */
+	public function testFindSingleRepository($repo_id, BeanstalkAPI $Beanstalk)
+	{
+		$repo = $Beanstalk->find_single_repository();
 	}
 }
