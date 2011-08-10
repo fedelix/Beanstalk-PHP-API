@@ -46,6 +46,6 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	 */
 	public function testFindRepositoryException(BeanstalkAPI $Beanstalk)
 	{
-		$Beanstalk->find_single_repository();
+		$Beanstalk->find_single_repository(null);
 	}
 }
