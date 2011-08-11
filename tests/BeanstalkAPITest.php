@@ -38,6 +38,7 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	
 	/**
 	 * @expectedException APIException
+	 * @expectedExceptionCode 401
 	 */
 	public function testBadLoginException()
 	{
