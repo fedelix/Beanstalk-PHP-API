@@ -65,7 +65,7 @@ class ReposTest extends PHPUnit_Framework_TestCase
 
 			$this->assertTrue(isset($repo->id));
 			$this->assertTrue(isset($repo->title));
-			$this->assertTrue(isset($repo->{'accout-id'}));
+			$this->assertTrue(isset($repo->{'account-id'}));
 		}
 	}
 }
