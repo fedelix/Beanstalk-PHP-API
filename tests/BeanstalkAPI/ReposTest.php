@@ -30,7 +30,7 @@ class ReposTest extends PHPUnit_Framework_TestCase
 		
 		$this->doReturnTypeCheck($repos);
 		
-		$this->assertTrue(isset($repos->repository));
+		$this->assertObjectHasAttribute('repository', $repo);
 		
 		// Used in subsequent tests
 		return $repos;
@@ -60,12 +60,13 @@ class ReposTest extends PHPUnit_Framework_TestCase
 			$repo_id = $repos->repository[0]->id;
 
 			$repo = $this->Beanstalk->find_single_repository($repo_id);
-
+			
 			$this->doReturnTypeCheck($repo);
-
-			$this->assertTrue(isset($repo->id));
-			$this->assertTrue(isset($repo->title));
-			$this->assertTrue(isset($repo->{'account-id'}));
+			
+			// Test main elements
+			$this->assertObjectHasAttribute('id', $repo);
+			$this->assertObjectHasAttribute('title', $repo);
+			$this->assertObjectHasAttribute('account-id', $repo);
 		}
 	}
 }
