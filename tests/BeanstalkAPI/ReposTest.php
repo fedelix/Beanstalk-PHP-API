@@ -31,6 +31,9 @@ class ReposTest extends PHPUnit_Framework_TestCase
 		$this->doReturnTypeCheck($repos);
 		
 		$this->assertTrue(isset($repos->repository));
+		
+		// Used in subsequent tests
+		return $repos;
 	}
 	
 	/**
@@ -41,24 +44,28 @@ class ReposTest extends PHPUnit_Framework_TestCase
 		$this->Beanstalk->find_single_repository(null);
 	}
 	
-	public function findSingleRepositoryProvider()
-	{
-		$repos = $this->Beanstalk->find_all_repositories();
-		
-		return array(array($repos->repository[0]->id));
-	}
-	
 	/**
-	 * @dataProvider findSingleRepositoryProvider
+	 * @depends testFindAllRepositories
 	 */
-	public function testFindSingleRepository($repo_id)
+	public function testFindSingleRepository($repos)
 	{
-		$repo = $this->Beanstalk->find_single_repository($repo_id);
-		
-		$this->doReturnTypeCheck($repo);
-		
-		$this->assertTrue(isset($repo->id));
-		$this->assertTrue(isset($repo->title));
-		$this->assertTrue(isset($repo->{'accout-id'}));
+		// Check we actually have a repository to test
+		if(count($repos->repository) == 0)
+		{
+			$this->markTestSkipped('No repositories available to test');
+		}
+		else
+		{
+			// Get repository id from first repo found
+			$repo_id = $repos->repository[0]->id;
+
+			$repo = $this->Beanstalk->find_single_repository($repo_id);
+
+			$this->doReturnTypeCheck($repo);
+
+			$this->assertTrue(isset($repo->id));
+			$this->assertTrue(isset($repo->title));
+			$this->assertTrue(isset($repo->{'accout-id'}));
+		}
 	}
 }
