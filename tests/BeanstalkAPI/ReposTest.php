@@ -58,7 +58,7 @@ class ReposTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testFindSingleRepository($repo_id, BeanstalkAPI $Beanstalk)
 	{
-		$repo = $Beanstalk->find_single_repository();
+		$repo = $Beanstalk->find_single_repository($repo_id);
 		
 		$this->doReturnTypeCheck($repo);
 		
