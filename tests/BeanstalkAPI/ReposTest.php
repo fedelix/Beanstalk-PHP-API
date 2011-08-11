@@ -24,12 +24,9 @@ class ReposTest extends PHPUnit_Framework_TestCase
 		$this->Beanstalk = new BeanstalkAPI('account', 'user', 'pass');
 	}
 	
-	/**
-	 * @depends testInstantiation
-	 */
-	public function testFindAllRepositories(BeanstalkAPI $Beanstalk)
+	public function testFindAllRepositories()
 	{
-		$repos = $Beanstalk->find_all_repositories();
+		$repos = $this->Beanstalk->find_all_repositories();
 		
 		$this->doReturnTypeCheck($repos);
 		
@@ -37,12 +34,11 @@ class ReposTest extends PHPUnit_Framework_TestCase
 	}
 	
 	/**
-	 * @depends testInstantiation
 	 * @expectedException InvalidArgumentException
 	 */
-	public function testFindSingleRepositoryException(BeanstalkAPI $Beanstalk)
+	public function testFindSingleRepositoryException()
 	{
-		$Beanstalk->find_single_repository(null);
+		$this->Beanstalk->find_single_repository(null);
 	}
 	
 	public function findSingleRepositoryProvider()
@@ -54,11 +50,10 @@ class ReposTest extends PHPUnit_Framework_TestCase
 	
 	/**
 	 * @dataProvider findSingleRepositoryProvider
-	 * @depends testInstantiation
 	 */
-	public function testFindSingleRepository($repo_id, BeanstalkAPI $Beanstalk)
+	public function testFindSingleRepository($repo_id)
 	{
-		$repo = $Beanstalk->find_single_repository($repo_id);
+		$repo = $this->Beanstalk->find_single_repository($repo_id);
 		
 		$this->doReturnTypeCheck($repo);
 		
