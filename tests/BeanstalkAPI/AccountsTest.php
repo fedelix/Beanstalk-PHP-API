@@ -26,7 +26,12 @@ class AccountTest extends PHPUnit_Framework_TestCase
 	
 	public function testGetAccountDetails()
 	{
-		$this->doReturnTypeCheck($this->Beanstalk->get_account_details());
+		$account = $this->Beanstalk->get_account_details();
+		
+		$this->doReturnTypeCheck($account);
+		
+		$this->assertObjectHasAttribute('id', $account);
+		$this->assertObjectHasAttribute('name', $account);
 	}
 	
 	public function testUpdateAccountDetails()
