@@ -44,38 +44,4 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 		$Beanstalk = new BeanstalkAPI('account', 'bad', 'login');
 		$Beanstalk->find_all_plans();
 	}
-	
-	/**
-	 * @depends testInstantiation
-	 */
-	public function testFindAllRepositories(BeanstalkAPI $Beanstalk)
-	{
-		$repos = $Beanstalk->find_all_repositories();
-		
-		$this->doReturnTypeCheck($repos);
-	}
-	
-	/**
-	 * @depends testInstantiation
-	 * @expectedException InvalidArgumentException
-	 */
-	public function testFindSingleRepositoryException(BeanstalkAPI $Beanstalk)
-	{
-		$Beanstalk->find_single_repository(null);
-	}
-	
-	public function findSingleRepositoryProvider()
-	{
-		// Need to access BeanstalkAPI object
-		// Call find_all_repositories() and return single repo
-	}
-	
-	/**
-	 * @dataProvider findSingleRepositoryProvider
-	 * @depends testInstantiation
-	 */
-	public function testFindSingleRepository($repo_id, BeanstalkAPI $Beanstalk)
-	{
-		$repo = $Beanstalk->find_single_repository();
-	}
 }
