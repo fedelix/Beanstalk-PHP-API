@@ -30,7 +30,7 @@ class ReposTest extends PHPUnit_Framework_TestCase
 		
 		$this->doReturnTypeCheck($repos);
 		
-		$this->assertObjectHasAttribute('repository', $repo);
+		$this->assertObjectHasAttribute('repository', $repos);
 		
 		// Used in subsequent tests
 		return $repos;
