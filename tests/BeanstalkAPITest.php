@@ -38,6 +38,9 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	public function testInstantiation()
 	{
 		$Beanstalk = new BeanstalkAPI(BEANSTALK_TEST_ACCOUNT, BEANSTALK_TEST_USER, BEANSTALK_TEST_PASS);
+		
+		$this->assertInstanceOf('BeanstalkAPI', $Beanstalk);
+		
 		return $Beanstalk;
 	}
 	
