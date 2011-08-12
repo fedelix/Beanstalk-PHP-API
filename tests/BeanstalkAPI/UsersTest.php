@@ -21,7 +21,7 @@ class UsersTest extends PHPUnit_Framework_TestCase
 	
 	protected function setUp()
 	{
-		$this->Beanstalk = new BeanstalkAPI('account', 'user', 'pass');
+		$this->Beanstalk = new BeanstalkAPI(BEANSTALK_TEST_ACCOUNT, BEANSTALK_TEST_USER, BEANSTALK_TEST_PASS);
 	}
 	
 	public function testFindAllUsers()

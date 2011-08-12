@@ -6,6 +6,11 @@
 
 require(dirname(__FILE__) . "/../lib/beanstalkapi.class.php");
 
+// Constants used for login in each test
+define('BEANSTALK_TEST_ACCOUNT', 'account');
+define('BEANSTALK_TEST_USER', 'user');
+define('BEANSTALK_TEST_PASS', 'pass');
+
 
 class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 {
@@ -32,7 +37,7 @@ class BeanstalkAPITest extends PHPUnit_Framework_TestCase
 	 */
 	public function testInstantiation()
 	{
-		$Beanstalk = new BeanstalkAPI('account', 'user', 'pass');
+		$Beanstalk = new BeanstalkAPI(BEANSTALK_TEST_ACCOUNT, BEANSTALK_TEST_USER, BEANSTALK_TEST_PASS);
 		return $Beanstalk;
 	}
 	
