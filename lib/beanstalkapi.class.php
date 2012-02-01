@@ -1579,8 +1579,10 @@ class BeanstalkAPI {
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_CAINFO, getcwd() . '/../CAcerts/GTECyberTrustGlobalRoot.crt');
 		
 		if(!is_null($write_data))
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $write_data);
