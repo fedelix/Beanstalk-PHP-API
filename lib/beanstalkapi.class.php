@@ -1580,6 +1580,7 @@ class BeanstalkAPI {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		
 		if(!is_null($write_data))
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $write_data);
