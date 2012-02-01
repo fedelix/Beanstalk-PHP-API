@@ -1598,9 +1598,16 @@ class BeanstalkAPI {
 		
 		// Check return code is in 2xx range
 		if(floor($this->curl_info['http_code'] / 100) != 2) {
-			$this->error_code = $this->curl_info['http_code'];
-			$this->error_string = "Curl request failed";
-			throw new APIException($this->error_code . ": ".$this->error_string, $this->error_code);
+			echo "Curl info:\n";
+			print_r($this->curl_info);
+			echo "\nData:\n";
+			var_dump($data);
+			echo "\nError:\n";
+			var_dump(curl_errno($ch) .':'. curl_error($ch));
+			
+			//$this->error_code = $this->curl_info['http_code'];
+			//$this->error_string = "Curl request failed";
+			//throw new APIException($this->error_code . ": ".$this->error_string, $this->error_code);
 		}
 
 		// Request failed
