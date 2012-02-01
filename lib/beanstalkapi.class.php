@@ -1607,6 +1607,8 @@ class BeanstalkAPI {
 			var_dump($data);
 			echo "\nError:\n";
 			var_dump(curl_errno($ch) .':'. curl_error($ch));
+			echo "\nCert file exists:";
+			var_dump(file_exists(dirname(__FILE__).'/cacert.pem'));
 			
 			//$this->error_code = $this->curl_info['http_code'];
 			//$this->error_string = "Curl request failed";
