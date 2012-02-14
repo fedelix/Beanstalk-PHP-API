@@ -1,4 +1,4 @@
-# Beanstalk PHP API v0.9.0 Documentation #
+# Beanstalk PHP API v0.9.1 Documentation #
 
 ## Installation ##
 Requires PHP 5, libcurl library and SimpleXML extension
@@ -61,6 +61,9 @@ List of available function calls:
 * `create_public_key(content);`
 * `update_public_key(key_id, params);`
 * `delete_public_key(key_id);`
+
+#### Feed Keys ####
+* `find_current_user_feed_key();`
 
 #### Repositories ####
 * `find_all_repositories();`

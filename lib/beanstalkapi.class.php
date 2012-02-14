@@ -4,7 +4,7 @@
  * PHP class for connecting to the Beanstalk API
  *
  * @link http://api.beanstalkapp.com/
- * @version 0.9.0
+ * @version 0.9.1
  */
 class BeanstalkAPI {
 	/**
@@ -494,6 +494,23 @@ class BeanstalkAPI {
 			throw new InvalidArgumentException("Public key ID required");
 		
 		return $this->_execute_curl("public_keys", $key_id . "." . $this->format, "DELETE");
+	}
+
+
+	//
+	// Feed Keys
+	//
+
+	/**
+	 * Find the Feed Key for current API user
+	 * Used to construct address to RSS/Atom feed for account/repo
+	 *
+	 * @link http://api.beanstalkapp.com/feed_key.html
+	 * @return SimpleXMLElement|array
+	 */
+	public function find_current_user_feed_key()
+	{
+		return $this->_execute_curl("feed_key." . $this->format);
 	}
 
 
