@@ -1,4 +1,4 @@
-# Beanstalk PHP API v0.9.1 Documentation #
+# Beanstalk PHP API v0.10.0 Documentation #
 
 ## Installation ##
 Requires PHP 5, libcurl library and SimpleXML extension
