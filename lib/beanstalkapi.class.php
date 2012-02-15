@@ -87,7 +87,7 @@ class BeanstalkAPI {
 				$xml->addChild('name', $params['name']);
 		
 			if(isset($params['timezone']))
-				$xml->addChild('time-zone', $params['timezone']); // Inconsistency in API?
+				$xml->addChild('time_zone', $params['timezone']); // Inconsistency in API?
 			
 			$data = $xml->asXml();
 		}
@@ -99,7 +99,7 @@ class BeanstalkAPI {
 				$data_array['account']['name'] = $params['name'];
 			
 			if(isset($params['timezone']))
-				$data_array['account']['time-zone'] = $params['timezone'];
+				$data_array['account']['time_zone'] = $params['timezone'];
 			
 			$data = json_encode($data_array);
 		}
@@ -188,8 +188,8 @@ class BeanstalkAPI {
 			
 			$xml->addChild('login', $login);
 			$xml->addChild('email', $email);
-			$xml->addChild('first-name', $first_name);
-			$xml->addChild('last-name', $last_name);
+			$xml->addChild('first_name', $first_name);
+			$xml->addChild('last_name', $last_name);
 			$xml->addChild('password', $password);
 			$xml->addChild('admin', $admin); // Should change to optional?
 			
@@ -204,8 +204,8 @@ class BeanstalkAPI {
 			
 			$data_array['user']['login'] = $login;
 			$data_array['user']['email'] = $email;
-			$data_array['user']['first-name'] = $first_name;
-			$data_array['user']['last-name'] = $last_name;
+			$data_array['user']['first_name'] = $first_name;
+			$data_array['user']['last_name'] = $last_name;
 			$data_array['user']['password'] = $password;
 			$data_array['user']['admin'] = $admin;
 			
@@ -241,10 +241,10 @@ class BeanstalkAPI {
 				$xml->addChild('email', $params['email']);
 			
 			if(isset($params['first_name']))
-				$xml->addChild('first-name', $params['first_name']);
+				$xml->addChild('first_name', $params['first_name']);
 			
 			if(isset($params['last_name']))
-				$xml->addChild('last-name', $params['last_name']);
+				$xml->addChild('last_name', $params['last_name']);
 			
 			if(isset($params['password']))
 				$xml->addChild('password', $params['password']);
@@ -265,10 +265,10 @@ class BeanstalkAPI {
 				$data_array['user']['email'] = $params['email'];
 			
 			if(isset($params['first_name']))
-				$data_array['user']['first-name'] = $params['first_name'];
+				$data_array['user']['first_name'] = $params['first_name'];
 			
 			if(isset($params['last_name']))
-				$data_array['user']['last-name'] = $params['last_name'];
+				$data_array['user']['last_name'] = $params['last_name'];
 			
 			if(isset($params['password']))
 				$data_array['user']['password'] = $params['password'];
@@ -340,8 +340,8 @@ class BeanstalkAPI {
 			$user = $xml->addChild('user');
 			
 			$user->addChild('email', $email);
-			$user->addChild('first-name', $first_name);
-			$user->addChild('last-name', $last_name);
+			$user->addChild('first_name', $first_name);
+			$user->addChild('last_name', $last_name);
 			
 			$data = $xml->asXml();
 		}
@@ -352,8 +352,8 @@ class BeanstalkAPI {
 			$data_array['invitation']['user'] = array();
 			
 			$data_array['invitation']['user']['email'] = $email;
-			$data_array['invitation']['user']['first-name'] = $first_name;
-			$data_array['invitation']['user']['last-name'] = $last_name;
+			$data_array['invitation']['user']['first_name'] = $first_name;
+			$data_array['invitation']['user']['last_name'] = $last_name;
 			
 			$data = json_encode($data_array);
 		}
@@ -409,7 +409,7 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<public-key></public-key>');
+			$xml = new SimpleXMLElement('<public_key></public_key>');
 			
 			$xml->addChild('content', $content);
 			
@@ -417,21 +417,21 @@ class BeanstalkAPI {
 				$xml->addChild('name', $name);
 			
 			if(!is_null($user_id))
-				$xml->addChild('user-id', $user_id);
+				$xml->addChild('user_id', $user_id);
 			
 			$data = $xml->asXml();
 		}
 		else
 		{
-			$data_array = array('public-key' => array());
+			$data_array = array('public_key' => array());
 			
-			$data_array['public-key']['content'] = $content;
+			$data_array['public_key']['content'] = $content;
 			
 			if(!is_null($name))
-				$data_array['public-key']['name'] = $name;
+				$data_array['public_key']['name'] = $name;
 			
 			if(!is_null($user_id))
-				$data_array['public-key']['user-id'] = $user_id;
+				$data_array['public_key']['user_id'] = $user_id;
 			
 			$data = json_encode($data_array);
 		}
@@ -456,7 +456,7 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<public-key></public-key>');
+			$xml = new SimpleXMLElement('<public_key></public_key>');
 			
 			if(!is_null($params['content']))
 				$xml->addChild('content', $params['content']);
@@ -468,13 +468,13 @@ class BeanstalkAPI {
 		}
 		else
 		{
-			$data_array = array('public-key' => array());
+			$data_array = array('public_key' => array());
 			
 			if(!is_null($params['content']))
-				$data_array['public-key']['content'] = $params['content'];
+				$data_array['public_key']['content'] = $params['content'];
 			
 			if(!is_null($params['name']))
-				$data_array['public-key']['name'] = $params['name'];
+				$data_array['public_key']['name'] = $params['name'];
 			
 			$data = json_encode($data_array);
 		}
@@ -596,15 +596,15 @@ class BeanstalkAPI {
 			$xml->addChild('name', $name);
 		
 			if(!is_null($type_id))
-				$xml->addChild('type-id', $type_id);
+				$xml->addChild('type_id', $type_id);
 		
 			$xml->addChild('title', $title);
 		
 			if(!is_null($create_structure))
-				$xml->addChild('create-structure', $create_structure);
+				$xml->addChild('create_structure', $create_structure);
 		
 			if(!is_null($color_label))
-				$xml->addChild('color-label', "label-" . $color_label);
+				$xml->addChild('color_label', "label-" . $color_label);
 		
 			$data = $xml->asXml();
 		}
@@ -615,15 +615,15 @@ class BeanstalkAPI {
 			$data_array['repository']['name'] = $name;
 			
 			if(!is_null($type_id))
-				$data_array['repository']['type-id'] = $type_id;
+				$data_array['repository']['type_id'] = $type_id;
 			
 			$data_array['repository']['title'] = $title;
 			
 			if(!is_null($create_structure))
-				$data_array['repository']['create-structure'] = $create_structure;
+				$data_array['repository']['create_structure'] = $create_structure;
 			
 			if(!is_null($color_label))
-				$data_array['repository']['color-label'] = "label-" . $color_label;
+				$data_array['repository']['color_label'] = "label-" . $color_label;
 			
 			$data = json_encode($data_array);
 		}
@@ -657,7 +657,7 @@ class BeanstalkAPI {
 				$xml->addChild('title', $params['title']);
 			
 			if(isset($params['color-label']))
-				$xml->addChild('color-label', "label-" . $params['color-label']);
+				$xml->addChild('color_label', "label-" . $params['color_label']);
 			
 			$data = $xml->asXml();
 		}
@@ -671,8 +671,8 @@ class BeanstalkAPI {
 			if(isset($params['title']))
 				$data_array['repository']['title'] = $params['title'];
 			
-			if(isset($params['color-label']))
-				$data_array['repository']['color-label'] = "label-" . $params['color-label'];
+			if(isset($params['color_label']))
+				$data_array['repository']['color_label'] = "label-" . $params['color_label'];
 			
 			$data = json_encode($data_array);
 		}
@@ -714,7 +714,7 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<repository-import></repository-import>');
+			$xml = new SimpleXMLElement('<repository_import></repository_import>');
 			
 			$xml->addChild('uri', $import_url);
 			
@@ -722,9 +722,9 @@ class BeanstalkAPI {
 		}
 		else
 		{
-			$data_array = array('repository-import' => array());
+			$data_array = array('repository_import' => array());
 			
-			$data_array['repository-import']['uri'] = $import_url;
+			$data_array['repository_import']['uri'] = $import_url;
 			
 			$data = json_encode($data_array);
 		}
@@ -771,10 +771,10 @@ class BeanstalkAPI {
 		{
 			$xml = new SimpleXMLElement('<permission></permission>');
 			
-			$user_xml = $xml->addChild('user-id', $user_id);
+			$user_xml = $xml->addChild('user_id', $user_id);
 			$user_xml->addAttribute('type', 'integer');
 			
-			$repo_xml = $xml->addChild('repository-id', $repo_id);
+			$repo_xml = $xml->addChild('repository_id', $repo_id);
 			$repo_xml->addAttribute('type', 'integer');
 			
 			if($read === true)
@@ -792,14 +792,14 @@ class BeanstalkAPI {
 			$write_xml->addAttribute('type', 'boolean');
 			
 			if($full_deployments_access === true)
-				$full_deploy_xml = $xml->addChild('full-deployments-access', 'true');
+				$full_deploy_xml = $xml->addChild('full_deployments_access', 'true');
 			else
-				$full_deploy_xml = $xml->addChild('full-deployments-access', 'false');
+				$full_deploy_xml = $xml->addChild('full_deployments_access', 'false');
 			
 			$full_deploy_xml->addAttribute('type', 'boolean');
 			
 			if(!is_null($server_environment_id)) {
-				$environment_xml = $xml->addChild('server-environment-id', $server_environment_id);
+				$environment_xml = $xml->addChild('server_environment_id', $server_environment_id);
 				$environment_xml->addAttribute('type', 'integer');
 			}
 			
@@ -809,8 +809,8 @@ class BeanstalkAPI {
 		{
 			$data_array = array('permission' => array());
 			
-			$data_array['permission']['user-id'] = $user_id;
-			$data_array['permission']['repository-id'] = $repo_id;
+			$data_array['permission']['user_id'] = $user_id;
+			$data_array['permission']['repository_id'] = $repo_id;
 			
 			if($read === true)
 				$data_array['permission']['read'] = true;
@@ -823,12 +823,12 @@ class BeanstalkAPI {
 				$data_array['permission']['write'] = false;
 			
 			if($full_deployments_access === true)
-				$data_array['permission']['full-deployments-access'] = true;
+				$data_array['permission']['full_deployments_access'] = true;
 			else
-				$data_array['permission']['full-deployments-access'] = false;
+				$data_array['permission']['full_deployments_access'] = false;
 			
 			if(!is_null($server_environment_id))
-				$data_array['permission']['server-environment-id'] = $server_environment_id;
+				$data_array['permission']['server_environment_id'] = $server_environment_id;
 			
 			$data = json_encode($data_array);
 		}
@@ -1021,8 +1021,8 @@ class BeanstalkAPI {
 			$revision_xml->addAttribute('type', 'integer');
 			
 			$xml->addChild('body', $body);
-			$xml->addChild('file-path', $file_path);
-			$xml->addChild('line-number', $line_number); // Should this have type attribute set as well?
+			$xml->addChild('file_path', $file_path);
+			$xml->addChild('line_number', $line_number); // Should this have type attribute set as well?
 			
 			$data = $xml->asXml();
 		}
@@ -1032,8 +1032,8 @@ class BeanstalkAPI {
 			
 			$data_array['comment']['revision'] = $revision_id;
 			$data_array['comment']['body'] = $body;
-			$data_array['comment']['file-path'] = $file_path;
-			$data_array['comment']['line-number'] = $line_number;
+			$data_array['comment']['file_path'] = $file_path;
+			$data_array['comment']['line_number'] = $line_number;
 			
 			$data = json_encode($data_array);
 		}
@@ -1092,31 +1092,31 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<server-environment></server-environment>');
+			$xml = new SimpleXMLElement('<server_environment></server_environment>');
 			
 			$xml->addChild('name', $name);
 			$xml->addChild('automatic', $automatic);
 			
 			if(!is_null($branch_name))
-				$xml->addChild('branch-name', $branch_name);
+				$xml->addChild('branch_name', $branch_name);
 			
 			if(!is_null($color_label))
-				$xml->addChild('color-label', 'color-' . $color_label);
+				$xml->addChild('color_label', 'color-' . $color_label);
 			
 			$data = $xml->asXml();
 		}
 		else
 		{
-			$data_array = array('server-environment' => array());
+			$data_array = array('server_environment' => array());
 			
-			$data_array['server-environment']['name'] = $name;
-			$data_array['server-environment']['automatic'] = $automatic;
+			$data_array['server_environment']['name'] = $name;
+			$data_array['server_environment']['automatic'] = $automatic;
 			
 			if(!is_null($branch_name))
-				$data_array['server-environment']['branch-name'] = $branch_name;
+				$data_array['server_environment']['branch_name'] = $branch_name;
 			
 			if(!is_null($color_label))
-				$data_array['server-environment']['color-label'] = 'color-' . $color_label;
+				$data_array['server_environment']['color_label'] = 'color-' . $color_label;
 			
 			$data = json_encode($data_array);
 		}
@@ -1142,7 +1142,7 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<server-environment></server-environment>');
+			$xml = new SimpleXMLElement('<server_environment></server_environment>');
 			
 			if(isset($params['name']))
 				$xml->addChild('name', $params['name']);
@@ -1151,22 +1151,22 @@ class BeanstalkAPI {
 				$xml->addChild('automatic', $params['automatic']);
 			
 			if(isset($params['branch_name']))
-				$xml->addChild('branch-name', $params['branch_name']);
+				$xml->addChild('branch_name', $params['branch_name']);
 			
 			$data = $xml->asXml();
 		}
 		else
 		{
-			$data_array = array('server-environment' => array());
+			$data_array = array('server_environment' => array());
 			
 			if(isset($params['name']))
-				$data_array['server-environment']['name'] = $params['name'];
+				$data_array['server_environment']['name'] = $params['name'];
 			
 			if(isset($params['automatic']))
-				$data_array['server-environment']['automatic'] = $params['automatic'];
+				$data_array['server_environment']['automatic'] = $params['automatic'];
 			
 			if(isset($params['branch_name']))
-				$data_array['server-environment']['branch-name'] = $params['branch_name'];
+				$data_array['server_environment']['branch_name'] = $params['branch_name'];
 			
 			$data = json_encode($data_array);
 		}
@@ -1236,12 +1236,12 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<release-server></release-server>');
+			$xml = new SimpleXMLElement('<release_server></release_server>');
 			
 			$xml->addChild('name', $name);
-			$xml->addChild('local-path', $local_path);
-			$xml->addChild('remote-path', $remote_path);
-			$xml->addChild('remote-addr', $remote_addr);
+			$xml->addChild('local_path', $local_path);
+			$xml->addChild('remote_path', $remote_path);
+			$xml->addChild('remote_addr', $remote_addr);
 			
 			$xml->addChild('login', $login);
 			
@@ -1263,58 +1263,58 @@ class BeanstalkAPI {
 			$xml->addChild('port', $port);
 			
 			if(!is_null($use_active_mode))
-				$xml->addChild('use-active-mode', $use_active_mode);
+				$xml->addChild('use_active_mode', $use_active_mode);
 			
 			if(!is_null($use_feat))
-				$xml->addChild('use-feat', $use_feat); // True by default
+				$xml->addChild('use_feat', $use_feat); // True by default
 			
 			if(!is_null($pre_release_hook))
-				$xml->addChild('pre-release-hook', $pre_release_hook);
+				$xml->addChild('pre_release_hook', $pre_release_hook);
 			
 			if(!is_null($post_release_hook))
-				$xml->addChild('post-release-hook', $post_release_hook);
+				$xml->addChild('post_release_hook', $post_release_hook);
 			
 			$data = $xml->asXml();
 		}
 		else
 		{
-			$data_array = array('release-server' => array());
+			$data_array = array('release_server' => array());
 			
-			$data_array['release-server']['name'] = $name;
-			$data_array['release-server']['local-path'] = $local_path;
-			$data_array['release-server']['remote-path'] = $remote_path;
-			$data_array['release-server']['remote-addr'] = $remote_addr;
+			$data_array['release_server']['name'] = $name;
+			$data_array['release_server']['local_path'] = $local_path;
+			$data_array['release_server']['remote_path'] = $remote_path;
+			$data_array['release_server']['remote_addr'] = $remote_addr;
 			
-			$data_array['release-server']['login'] = $login;
+			$data_array['release_server']['login'] = $login;
 			
 			if($protocol == 'sftp') {
-				$data_array['release-server']['protocol'] = 'sftp';
+				$data_array['release_server']['protocol'] = 'sftp';
 				
 				if($authenticate_by_key == true) {
-					$data_array['release-server']['authenticate-by-key'] = true;
+					$data_array['release_server']['authenticate_by_key'] = true;
 				}
 				else {
-					$data_array['release-server']['password'] = $password;
+					$data_array['release_server']['password'] = $password;
 				}
 			}
 			else {
-				$data_array['release-server']['protocol'] = 'ftp';
-				$data_array['release-server']['password'] = $password;
+				$data_array['release_server']['protocol'] = 'ftp';
+				$data_array['release_server']['password'] = $password;
 			}
 			
-			$data_array['release-server']['port'] = $port;
+			$data_array['release_server']['port'] = $port;
 			
 			if(!is_null($use_active_mode))
-				$data_array['release-server']['use-active-mode'] = $use_active_mode;
+				$data_array['release_server']['use_active_mode'] = $use_active_mode;
 			
 			if(!is_null($use_feat))
-				$data_array['release-server']['use-feat'] = $use_feat; // True by default
+				$data_array['release_server']['use_feat'] = $use_feat; // True by default
 			
 			if(!is_null($pre_release_hook))
-				$data_array['release-server']['pre-release-hook'] = $pre_release_hook;
+				$data_array['release_server']['pre_release_hook'] = $pre_release_hook;
 			
 			if(!is_null($post_release_hook))
-				$data_array['release-server']['post-release-hook'] = $post_release_hook;
+				$data_array['release_server']['post_release_hook'] = $post_release_hook;
 			
 			$data = json_encode($data_array);
 		}
@@ -1340,19 +1340,19 @@ class BeanstalkAPI {
 		
 		if($this->format == 'xml')
 		{
-			$xml = new SimpleXMLElement('<release-server></release-server>');
+			$xml = new SimpleXMLElement('<release_server></release_server>');
 	
 			if(!is_null($params['name']))
 				$xml->addChild('name', $params['name']);
 	
 			if(!is_null($params['local_path']))
-				$xml->addChild('local-path', $params['local_path']);
+				$xml->addChild('local_path', $params['local_path']);
 	
 			if(!is_null($params['remote_path']))
-				$xml->addChild('remote-path', $params['remote_path']);
+				$xml->addChild('remote_path', $params['remote_path']);
 	
 			if(!is_null($params['remote_addr']))
-				$xml->addChild('remote-addr', $params['remote_addr']);
+				$xml->addChild('remote_addr', $params['remote_addr']);
 	
 			if(!is_null($params['protocol']))
 				$xml->addChild('protocol', $params['protocol']);
@@ -1367,64 +1367,64 @@ class BeanstalkAPI {
 				$xml->addChild('password', $params['password']);
 
 			if(!is_null($params['use_active_mode']))
-				$xml->addChild('use-active-mode', $params['use_active_mode']);
+				$xml->addChild('use_active_mode', $params['use_active_mode']);
 
 			if(!is_null($params['authenticate_by_key']))
-				$xml->addChild('authenticate-by-key', $params['authenticate_by_key']);
+				$xml->addChild('authenticate_by_key', $params['authenticate_by_key']);
 
 			if(!is_null($params['use_feat']))
-				$xml->addChild('use-feat', $params['use_feat']);
+				$xml->addChild('use_feat', $params['use_feat']);
 
 			if(!is_null($params['pre_release_hook']))
-				$xml->addChild('pre-release-hook', $params['pre_release_hook']);
+				$xml->addChild('pre_release_hook', $params['pre_release_hook']);
 
 			if(!is_null($params['post_release_hook']))
-				$xml->addChild('post-release-hook', $params['post_release_hook']);
+				$xml->addChild('post_release_hook', $params['post_release_hook']);
 
 			$data = $xml->asXml();
 		}
 		else
 		{
-			$data_array = array('release-server' => array());
+			$data_array = array('release_server' => array());
 			
 			if(!is_null($params['name']))
-				$data_array['release-server']['name'] = $params['name'];
+				$data_array['release_server']['name'] = $params['name'];
 			
 			if(!is_null($params['local_path']))
-				$data_array['release-server']['local-path'] = $params['local_path'];
+				$data_array['release_server']['local_path'] = $params['local_path'];
 			
 			if(!is_null($params['remote_path']))
-				$data_array['release-server']['remote-path'] = $params['remote_path'];
+				$data_array['release_server']['remote_path'] = $params['remote_path'];
 			
 			if(!is_null($params['remote_addr']))
-				$data_array['release-server']['remote-addr'] = $params['remote_addr'];
+				$data_array['release_server']['remote_addr'] = $params['remote_addr'];
 			
 			if(!is_null($params['protocol']))
-				$data_array['release-server']['protocol'] = $params['protocol'];
+				$data_array['release_server']['protocol'] = $params['protocol'];
 			
 			if(!is_null($params['port']))
-				$data_array['release-server']['port'] = $params['port'];
+				$data_array['release_server']['port'] = $params['port'];
 			
 			if(!is_null($params['login']))
-				$data_array['release-server']['login'] = $params['login'];
+				$data_array['release_server']['login'] = $params['login'];
 			
 			if(!is_null($params['password']))
-				$data_array['release-server']['password'] = $params['password'];
+				$data_array['release_server']['password'] = $params['password'];
 			
 			if(!is_null($params['use_active_mode']))
-				$data_array['release-server']['use-active-mode'] = $params['use_active_mode'];
+				$data_array['release_server']['use_active_mode'] = $params['use_active_mode'];
 			
 			if(!is_null($params['authenticate_by_key']))
-				$data_array['release-server']['authenticate-by-key'] = $params['authenticate_by_key'];
+				$data_array['release_server']['authenticate_by_key'] = $params['authenticate_by_key'];
 			
 			if(!is_null($params['use_feat']))
-				$data_array['release-server']['use-feat'] = $params['use_feat'];
+				$data_array['release_server']['use_feat'] = $params['use_feat'];
 			
 			if(!is_null($params['pre_release_hook']))
-				$data_array['release-server']['pre-release-hook'] = $params['pre_release_hook'];
+				$data_array['release_server']['pre_release_hook'] = $params['pre_release_hook'];
 			
 			if(!is_null($params['post_release_hook']))
-				$data_array['release-server']['post-release-hook'] = $params['post_release_hook'];
+				$data_array['release_server']['post_release_hook'] = $params['post_release_hook'];
 	
 			$data = json_encode($data_array);
 		}
@@ -1537,7 +1537,7 @@ class BeanstalkAPI {
 			$revision_xml->addAttribute('type', 'integer');
 	
 			$xml->addChild('comment', $comment);
-			$xml->addChild('deploy-from-scratch', $deploy_from_scratch);
+			$xml->addChild('deploy_from_scratch', $deploy_from_scratch);
 
 			$data = $xml->asXml();
 		}
@@ -1547,7 +1547,7 @@ class BeanstalkAPI {
 			
 			$data_array['release']['revision'] = $revision_id;
 			$data_array['release']['comment'] = $comment;
-			$data_array['release']['deploy-from-scratch'] = $deploy_from_scratch;
+			$data_array['release']['deploy_from_scratch'] = $deploy_from_scratch;
 	
 			$data = json_encode($data_array);
 		}
