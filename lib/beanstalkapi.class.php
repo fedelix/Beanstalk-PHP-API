@@ -852,6 +852,40 @@ class BeanstalkAPI {
 
 
 	//
+	// Integrations
+	//
+
+	/**
+	 * Find all integrations for a repository
+	 *
+	 * @link http://api.beanstalkapp.com/integration.html
+	 * @param integer $repo_id
+	 * @return SimpleXMLElement|array
+	 */
+	public function find_all_integrations($repo_id) {
+		if(empty($repo_id))
+			throw new InvalidArgumentException("Repository ID required");
+
+		return $this->_execute_curl("repositories", $repo_id . "/integrations." . $this->format);
+	}
+
+	/**
+	 * Find a single integration from a repository
+	 *
+	 * @link http://api.beanstalkapp.com/integration.html
+	 * @param integer $repo_id
+	 * @param integer $integration_id
+	 * @return SimpleXMLElement|array
+	 */
+	public function find_single_integration($repo_id, $integration_id) {
+		if(empty($repo_id) || empty($integration_id))
+			throw new InvalidArgumentException("Repository ID and Integration ID required");
+
+		return $this->_execute_curl("repositories", $repo_id . "/integrations/" . $integration_id . "." . $this->format);
+	}
+
+
+	//
 	// Changesets
 	//
 
