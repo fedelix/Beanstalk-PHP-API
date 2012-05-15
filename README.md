@@ -82,6 +82,10 @@ List of available function calls:
 * `create_user_permissions(user_id, repo_id, read, write, full_deployments_access);`
 * `delete_user_permissions(user_id);`
 
+#### Integrations ####
+* `find_all_integrations(repo_id);`
+* `find_single_integration(repo_id, integration_id);`
+
 #### Changesets ####
 * `find_all_changesets();`
 * `find_single_repository_changesets(repo_id);`
