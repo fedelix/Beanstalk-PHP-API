@@ -16,12 +16,16 @@ Clone the most recent copy of the repository
 
 Include beanstalkapi.class.php in the php file you wish to use it in, using
 
-	require_once('lib/beanstalkapi.class.php');
+```php
+require_once('lib/beanstalkapi.class.php');
+```
 
 ## Usage ##
 Before using any of the following methods, you must first call the following:
-	
-	$Beanstalk = new BeanstalkAPI('ACCOUNT_NAME_HERE', 'USERNAME_HERE', 'PASSWORD_HERE');
+
+```php	
+$Beanstalk = new BeanstalkAPI('ACCOUNT_NAME_HERE', 'USERNAME_HERE', 'PASSWORD_HERE');
+```
 
 Make sure to put your account details in the appropriate places.
 
@@ -29,7 +33,9 @@ Now call the API functions using the `$Beanstalk` variable, ie. `$Beanstalk->fin
 
 The BeanstalkAPI object can use either XML or JSON to communicate with your Beanstalk account. It will use JSON by default and return an array as the response. If you want to use XML just provide 'xml' as the 4th parameter:
 
-	$Beanstalk = new BeanstalkAPI('ACCOUNT_NAME_HERE', 'USERNAME_HERE', 'PASSWORD_HERE', 'xml');
+```php
+$Beanstalk = new BeanstalkAPI('ACCOUNT_NAME_HERE', 'USERNAME_HERE', 'PASSWORD_HERE', 'xml');
+```
 
 and it will return a SimpleXMLElement.
 
@@ -122,45 +128,51 @@ List of available function calls:
 ### Examples ###
 Display account details:
 
-	<?php
-		require_once('lib/beanstalkapi.class.php')
-		$Beanstalk = new BeanstalkAPI('myaccount', 'chris', 'pass');
-		
-		$account_details = $Beanstalk->get_account_details();
-		
-		print_r($account_details);
-	?>
+```php
+<?php
+require_once('lib/beanstalkapi.class.php')
+$Beanstalk = new BeanstalkAPI('myaccount', 'chris', 'pass');
+
+$account_details = $Beanstalk->get_account_details();
+
+print_r($account_details);
+?>
+```
 
 Fetch a list of repositories:
 
-	<?php
-		require_once('lib/beanstalkapi.class.php');
-		$Beanstalk = new BeanstalkAPI('myaccount', 'chris', 'pass');
-		
-		$repositories = $Beanstalk->find_all_repositories();
-		
-		print_r($repositories);
-	?>
+```php
+<?php
+require_once('lib/beanstalkapi.class.php');
+$Beanstalk = new BeanstalkAPI('myaccount', 'chris', 'pass');
+
+$repositories = $Beanstalk->find_all_repositories();
+
+print_r($repositories);
+?>
+```
 
 If there is a problem connecting to the API, the function will throw an APIException:
 
-	<?php
-		require_once('lib/beanstalkapi.class.php');
-		$Beanstalk = new BeanstalkAPI('myaccount', 'chris', 'pass');
-		
-		try
-		{
-			$users = $Beanstalk->find_all_users();
-			
-			// This will only be executed if find_all_users() ran correctly
-			print_r($users);
-		}
-		catch(APIException $e)
-		{
-			echo 'Oops, there was a problem ' . $e->getMessage();
-			// Use $e->getCode() to get the returned HTTP status code of the exception
-		}
-	?>
+```php
+<?php
+require_once('lib/beanstalkapi.class.php');
+$Beanstalk = new BeanstalkAPI('myaccount', 'chris', 'pass');
+
+try
+{
+	$users = $Beanstalk->find_all_users();
+	
+	// This will only be executed if find_all_users() ran correctly
+	print_r($users);
+}
+catch(APIException $e)
+{
+	echo 'Oops, there was a problem ' . $e->getMessage();
+	// Use $e->getCode() to get the returned HTTP status code of the exception
+}
+?>
+```
 
 ## Further info ##
 Detailed documentation about the API can be found on the Beanstalk website at http://api.beanstalkapp.com/
