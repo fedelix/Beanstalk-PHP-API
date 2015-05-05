@@ -599,10 +599,11 @@ class BeanstalkAPI {
 				$xml->addChild('type_id', $type_id);
 		
 			$xml->addChild('title', $title);
-		
-			if(!is_null($create_structure))
-				$xml->addChild('create_structure', $create_structure);
-		
+
+			// 'create_structure' option applies to SVN only
+			if ($type_id == 'subversion' && !is_null($create_structure))
+					$xml->addChild('create_structure', $create_structure);
+
 			if(!is_null($color_label))
 				$xml->addChild('color_label', "label-" . $color_label);
 		
@@ -618,10 +619,11 @@ class BeanstalkAPI {
 				$data_array['repository']['type_id'] = $type_id;
 			
 			$data_array['repository']['title'] = $title;
-			
-			if(!is_null($create_structure))
-				$data_array['repository']['create_structure'] = $create_structure;
-			
+
+			// 'create_structure' option applies to SVN only
+			if ($type_id == 'subversion' && !is_null($create_structure))
+					$data_array['repository']['create_structure'] = $create_structure;
+
 			if(!is_null($color_label))
 				$data_array['repository']['color_label'] = "label-" . $color_label;
 			
