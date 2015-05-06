@@ -1119,7 +1119,7 @@ class BeanstalkAPI {
 	 * @param string $name
 	 * @param bool $automatic [optional]
 	 * @param string $branch_name [optional] Git only
-	 * @param string $color_label [optional] Accepts - red, orange, yellow, green, blue, pink, grey
+	 * @param string $color_label [optional] Accepts - white, pink, red, red-orange, orange, yellow, yellow-green, aqua-green, green, green-blue, sky-blue, light-blue, blue, orchid, violet, brown, black, grey
 	 * @return SimpleXMLElement|array
 	 */
 	public function create_server_environment($repo_id, $name, $automatic = false, $branch_name = NULL, $color_label = NULL) {
@@ -1137,7 +1137,7 @@ class BeanstalkAPI {
 				$xml->addChild('branch_name', $branch_name);
 			
 			if(!is_null($color_label))
-				$xml->addChild('color_label', 'color-' . $color_label);
+				$xml->addChild('color_label', 'label-' . $color_label);
 			
 			$data = $xml->asXml();
 		}
@@ -1152,7 +1152,7 @@ class BeanstalkAPI {
 				$data_array['server_environment']['branch_name'] = $branch_name;
 			
 			if(!is_null($color_label))
-				$data_array['server_environment']['color_label'] = 'color-' . $color_label;
+				$data_array['server_environment']['color_label'] = 'label-' . $color_label;
 			
 			$data = json_encode($data_array);
 		}
@@ -1255,7 +1255,7 @@ class BeanstalkAPI {
 	 * @param string $local_path
 	 * @param string $remote_path
 	 * @param string $remote_addr
-	 * @param string $protocol [optional] Accepts - ftp, sftp
+	 * @param string $protocol [optional] Accepts - ftp, sftp, shell
 	 * @param integer $port [optional]
 	 * @param string $login
 	 * @param string $password
@@ -1264,9 +1264,10 @@ class BeanstalkAPI {
 	 * @param bool $use_feat [optional] Defaults to true
 	 * @param string $pre_release_hook [optional]
 	 * @param string $post_release_hook [optional]
+	 * @param string $shell_code [optional]
 	 * @return SimpleXMLElement|array
 	 */
-	public function create_release_server($repo_id, $environment_id, $name, $local_path, $remote_path, $remote_addr, $protocol = 'ftp', $port = 21, $login, $password, $use_active_mode = NULL, $authenticate_by_key = NULL, $use_feat = true, $pre_release_hook = NULL, $post_release_hook = NULL) {
+	public function create_release_server($repo_id, $environment_id, $name, $local_path, $remote_path, $remote_addr, $protocol = 'ftp', $port = 21, $login, $password, $use_active_mode = NULL, $authenticate_by_key = NULL, $use_feat = true, $pre_release_hook = NULL, $post_release_hook = NULL, $shell_code = NULL) {
 		if(empty($repo_id) || empty($environment_id) || empty($name) || empty($local_path) || empty($remote_path) || empty($remote_addr) || empty($protocol) || empty($port) || empty($login))
 			throw new InvalidArgumentException("Some required fields missing");
 		
@@ -1283,6 +1284,16 @@ class BeanstalkAPI {
 			
 			if($protocol == 'sftp') {
 				$xml->addChild('protocol', 'sftp');
+				
+				if($authenticate_by_key == true) {
+					$xml->addChild('authenticate_by_key', true);
+				}
+				else {
+					$xml->addChild('password', $password);
+				}
+			}
+			else if ($protocol == 'shell') {
+				$xml->addChild('protocol', 'shell');
 				
 				if($authenticate_by_key == true) {
 					$xml->addChild('authenticate_by_key', true);
@@ -1309,6 +1320,9 @@ class BeanstalkAPI {
 			
 			if(!is_null($post_release_hook))
 				$xml->addChild('post_release_hook', $post_release_hook);
+				
+			if(!is_null($shell_code))
+				$xml->addChild('shell_code', $shell_code);
 			
 			$data = $xml->asXml();
 		}
@@ -1325,6 +1339,16 @@ class BeanstalkAPI {
 			
 			if($protocol == 'sftp') {
 				$data_array['release_server']['protocol'] = 'sftp';
+				
+				if($authenticate_by_key == true) {
+					$data_array['release_server']['authenticate_by_key'] = true;
+				}
+				else {
+					$data_array['release_server']['password'] = $password;
+				}
+			}
+			else if ($protocol == 'shell') {
+				$data_array['release_server']['protocol'] = 'shell';
 				
 				if($authenticate_by_key == true) {
 					$data_array['release_server']['authenticate_by_key'] = true;
@@ -1352,6 +1376,9 @@ class BeanstalkAPI {
 			if(!is_null($post_release_hook))
 				$data_array['release_server']['post_release_hook'] = $post_release_hook;
 			
+			if(!is_null($shell_code))
+				$data_array['release_server']['shell_code'] = $shell_code;
+				
 			$data = json_encode($data_array);
 		}
 		
@@ -1364,7 +1391,7 @@ class BeanstalkAPI {
 	 * @link http://api.beanstalkapp.com/release_server.html
 	 * @param integer $repo_id
 	 * @param integer $server_id
-	 * @param array $params Accepts - name, local_path, remote_path, remote_addr, protocol, port, login, password, use_active_mode, authenticate_by_key, use_feat, pre_release_hook, post_release_hook
+	 * @param array $params Accepts - name, local_path, remote_path, remote_addr, protocol, port, login, password, use_active_mode, authenticate_by_key, use_feat, pre_release_hook, post_release_hook, shell_code
 	 * @return SimpleXMLElement|array
 	 */
 	public function update_release_server($repo_id, $server_id, $params = array()) {
@@ -1417,6 +1444,9 @@ class BeanstalkAPI {
 			if(!is_null($params['post_release_hook']))
 				$xml->addChild('post_release_hook', $params['post_release_hook']);
 
+			if(!is_null($params['shell_code']))
+				$xml->addChild('shell_code', $params['shell_code']);
+
 			$data = $xml->asXml();
 		}
 		else
@@ -1461,6 +1491,9 @@ class BeanstalkAPI {
 			
 			if(!is_null($params['post_release_hook']))
 				$data_array['release_server']['post_release_hook'] = $params['post_release_hook'];
+				
+			if(!is_null($params['shell_code']))
+				$data_array['release_server']['shell_code'] = $params['shell_code'];
 	
 			$data = json_encode($data_array);
 		}
